@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <meta name="theme-color" content="#FFFFFF">
+  <script>
+    (() => {
+      let keuze;
+      try { keuze = window.localStorage.getItem("bes_thema"); } catch {}
+      const donker = keuze === "donker" || (keuze !== "licht" && window.matchMedia("(prefers-color-scheme: dark)").matches);
+      document.documentElement.dataset.theme = donker ? "dark" : "light";
+      document.querySelector("meta[name="theme-color"]").content = donker ? "#0B0B0C" : "#FFFFFF";
+      try { document.documentElement.classList.toggle("has-hover", window.matchMedia("(any-hover: hover)").matches); } catch {}
+    })();
+  </script>
+  <title>Kruisje bolletje | Berie's Exam Space</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/style.css?v=1">
+  <link rel="stylesheet" href="assets/kruisje-bolletje.css?v=1">
+  <script src="assets/robot.js?v=1" defer></script>
+  <script src="assets/kruisje-bolletje.js?v=1" defer></script>
+</head>
+<body>
+  <header class="site-header">
+    <nav class="navigation" aria-label="Hoofdnavigatie">
+      <a class="brand" href="https://beriesexamspace.com/" aria-label="Berie's Exam Space, startpagina">
+        <span class="brand-symbol" aria-hidden="true">B</span>
+        <span class="brand-name"><span>Berie's</span> <span>Exam Space</span></span>
+      </a>
+    </nav>
+  </header>
+
+  <main id="inhoud" class="pagina kb-pagina" aria-labelledby="kb-kop">
+    <div class="wrap">
+      <header class="pagina-kop"><p class="eyebrow">Pauze</p><h1 id="kb-kop">Kruisje bolletje</h1></header>
+      <div class="kb-rooster">
+        <div class="kaart kb-spel">
+          <div class="kb-niveaus" role="group" aria-label="Niveau">
+            <button type="button" class="kb-niveau" data-niveau="makkelijk" aria-pressed="false">Makkelijk</button>
+            <button type="button" class="kb-niveau" data-niveau="normaal" aria-pressed="false">Normaal</button>
+            <button type="button" class="kb-niveau" data-niveau="onmogelijk" aria-pressed="false">Onmogelijk</button>
+          </div>
+          <p class="kb-uitleg" id="kb-uitleg"></p>
+          <div class="kb-status" id="kb-status" role="status" aria-live="polite">
+            <span class="kb-stip" aria-hidden="true"></span><span id="kb-status-tekst"></span>
+          </div>
+        </div>
+        <div class="kaart kb-veld">
+          <div class="kb-bord-ruimte"><div class="kb-bord" id="kb-bord" role="group" aria-label="Speelbord"></div></div>
+          <div class="kb-acties"><button type="button" class="knop" id="kb-opnieuw">Nieuw spel</button></div>
+        </div>
+        <section class="kaart kb-stand" aria-labelledby="kb-stand-kop">
+          <h2 class="kb-stand-kop" id="kb-stand-kop">Jouw stand</h2>
+          <p class="kb-stand-sub">Blijft bewaard op dit toestel.</p>
+          <div class="kb-tabel-wrap">
+            <table class="kb-tabel">
+              <thead><tr><th scope="col">Niveau</th><th scope="col">Gewonnen</th><th scope="col">Gelijk</th><th scope="col">Verloren</th></tr></thead>
+              <tbody>
+                <tr data-niveau="makkelijk"><th scope="row">Makkelijk</th><td data-veld="jij">0</td><td data-veld="gelijk">0</td><td data-veld="robot">0</td></tr>
+                <tr data-niveau="normaal"><th scope="row">Normaal</th><td data-veld="jij">0</td><td data-veld="gelijk">0</td><td data-veld="robot">0</td></tr>
+                <tr data-niveau="onmogelijk"><th scope="row">Onmogelijk</th><td data-veld="jij">0</td><td data-veld="gelijk">0</td><td data-veld="robot">0</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+      </div>
+    </div>
+  </main>
+</body>
+</html>
